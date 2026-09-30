@@ -40,6 +40,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/plants" element={<Plants />} />
               <Route path="/plant/:id" element={<PlantDetail />} />
+              <Route path="/plants/:id" element={<PlantDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>

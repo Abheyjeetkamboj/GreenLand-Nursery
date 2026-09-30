@@ -2,24 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPlantById, getPlantsByCategory } from '../utils/plantUtils';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Sun, Droplets, Ruler, Heart, Flower2 } from 'lucide-react';
+import { ChevronLeft, Sun, Droplets, Ruler, Heart, Flower2, Leaf } from 'lucide-react';
 import PlantGrid from '../components/PlantGrid';
 
 const PlantDetail = () => {
   const { id } = useParams();
   const [plant, setPlant] = useState(null);
   const [relatedPlants, setRelatedPlants] = useState([]);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
+    setImageError(false);
     const foundPlant = getPlantById(id);
     if (foundPlant) {
       setPlant(foundPlant);
       document.title = `${foundPlant.name} | Dev Greenland Nursery`;
       
       const related = getPlantsByCategory(foundPlant.category)
-        .filter(p => p.id !== foundPlant.id)
+        .filter(p => p && p.id !== foundPlant.id)
         .slice(0, 4);
       setRelatedPlants(related);
+    } else {
+      setPlant(null);
+      setRelatedPlants([]);
+      document.title = 'Plant Not Found | Dev Greenland Nursery';
     }
     window.scrollTo(0, 0);
   }, [id]);
@@ -70,13 +76,22 @@ const PlantDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="aspect-[4/5] rounded-3xl overflow-hidden shadow-lg bg-gray-100"
+            className="aspect-[4/5] rounded-3xl overflow-hidden shadow-lg bg-stone-100 flex items-center justify-center relative"
           >
-            <img 
-              src={plant.image} 
-              alt={plant.name}
-              className="w-full h-full object-cover"
-            />
+            {!imageError && plant.image ? (
+              <img 
+                src={plant.image} 
+                alt={plant.name}
+                onError={() => setImageError(true)}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-emerald-50 to-stone-100 text-emerald-800/40 p-6 text-center">
+                <Leaf className="w-16 h-16 mb-3 text-emerald-600/50" />
+                <span className="text-base font-medium text-stone-600">{plant.name}</span>
+                <span className="text-xs text-stone-400 mt-1">Image unavailable</span>
+              </div>
+            )}
           </motion.div>
 
           <motion.div 

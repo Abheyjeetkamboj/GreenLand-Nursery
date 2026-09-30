@@ -44,25 +44,22 @@ const Navbar = () => {
   const isTransparent = (location.pathname === '/' || location.pathname === '') && !isScrolled;
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isTransparent 
-          ? 'bg-transparent py-5' 
-          : 'bg-stone-50/90 backdrop-blur-md shadow-sm py-3'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isTransparent
+        ? 'bg-transparent py-5'
+        : 'bg-stone-50/90 backdrop-blur-md shadow-sm py-3'
+        }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2 group" onClick={closeMenu}>
-          <Leaf className={`w-6 h-6 transition-colors duration-300 ${
-            isTransparent 
-              ? 'text-emerald-400 group-hover:text-emerald-300' 
-              : 'text-emerald-700 group-hover:text-emerald-600'
-          }`} />
-          <span className={`text-xl font-medium tracking-tight transition-colors duration-300 ${
-            isTransparent 
-              ? 'text-white group-hover:text-stone-200' 
-              : 'text-emerald-950 group-hover:text-emerald-800'
-          }`}>
+          <Leaf className={`w-6 h-6 transition-colors duration-300 ${isTransparent
+            ? 'text-emerald-400 group-hover:text-emerald-300'
+            : 'text-emerald-700 group-hover:text-emerald-600'
+            }`} />
+          <span className={`text-xl font-medium tracking-tight transition-colors duration-300 ${isTransparent
+            ? 'text-white group-hover:text-stone-200'
+            : 'text-emerald-950 group-hover:text-emerald-800'
+            }`}>
             Dev Greenland
           </span>
         </Link>
@@ -70,14 +67,13 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
+            <a
               key={link.name}
               href={link.path}
-              className={`text-sm font-medium transition-colors duration-300 ${
-                isTransparent 
-                  ? 'text-white/90 hover:text-emerald-300' 
-                  : 'text-emerald-900/80 hover:text-emerald-700'
-              }`}
+              className={`text-sm font-medium transition-colors duration-300 ${isTransparent
+                ? 'text-white/90 hover:text-emerald-300'
+                : 'text-emerald-900/80 hover:text-emerald-700'
+                }`}
             >
               {link.name}
             </a>
@@ -85,14 +81,13 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile Toggle */}
-        <button 
-          className={`md:hidden p-2 z-50 relative transition-colors duration-300 ${
-            isOpen 
-              ? 'text-emerald-950' 
-              : isTransparent 
-                ? 'text-white hover:text-emerald-300' 
-                : 'text-emerald-950 hover:text-emerald-800'
-          }`}
+        <button
+          className={`md:hidden p-2 z-50 relative transition-colors duration-300 ${isOpen
+            ? 'text-emerald-950'
+            : isTransparent
+              ? 'text-white hover:text-emerald-300'
+              : 'text-emerald-950 hover:text-emerald-800'
+            }`}
           onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
@@ -132,3 +127,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
