@@ -45,7 +45,7 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-medium mb-6">Connect</h4>
             <ul className="space-y-3 text-sm text-emerald-200/80 mb-6">
-              <li>Dev GreenLand Nursery, Jalalabad,Punjab,152024</li>
+              <li>Dev GreenLand Nursery, Jalalabad, Punjab,152024</li>
               <li>9914900057</li>
               
             </ul>
