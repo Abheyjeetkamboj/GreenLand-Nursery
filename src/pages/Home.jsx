@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import FeaturedPlants from '../components/FeaturedPlants';
 import CategoryShowcase from '../components/CategoryShowcase';
 import SeasonalSection from '../components/SeasonalSection';
+import AccessoriesSection from '../components/AccessoriesSection';
 import AboutSection from '../components/AboutSection';
 import ContactSection from '../components/ContactSection';
 import { motion } from 'framer-motion';
@@ -25,6 +26,9 @@ const Home = () => {
       </div>
       <div id="seasonal" className="scroll-mt-20">
         <SeasonalSection />
+      </div>
+      <div id="accessories" className="scroll-mt-20">
+        <AccessoriesSection />
       </div>
       <div id="about" className="scroll-mt-20">
         <AboutSection />

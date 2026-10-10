@@ -1,7 +1,6 @@
 import React from 'react';
-// import { Leaf, Instagram, Facebook, Twitter } from 'lucide-react';
-import { Leaf } from "lucide-react";
-import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 import { categoryConfig } from '../data/plants';
 
 const Footer = () => {
@@ -12,9 +11,12 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Leaf className="w-7 h-7 text-emerald-400" />
-              <span className="text-2xl font-serif tracking-tight text-white">Dev Greenland</span>
+            <div className="flex items-center">
+              <img 
+                src="/images/logo-light.png" 
+                alt="Dev Greenland Nursery" 
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <p className="text-emerald-200/80 text-sm leading-relaxed max-w-xs">
               Nurturing nature for your spaces. A diverse collection of healthy, thriving plants for every environment.
@@ -25,7 +27,8 @@ const Footer = () => {
             <h4 className="text-white font-medium mb-6">Quick Links</h4>
             <ul className="space-y-3 text-sm text-emerald-200/80">
               <li><a href="/#home" className="hover:text-emerald-400 transition-colors">Home</a></li>
-              <li><a href="/#plants" className="hover:text-emerald-400 transition-colors">All Plants</a></li>
+              <li><Link to="/plants" className="hover:text-emerald-400 transition-colors">All Plants</Link></li>
+              <li><Link to="/accessories" className="hover:text-emerald-400 transition-colors">Garden Accessories</Link></li>
               <li><a href="/#categories" className="hover:text-emerald-400 transition-colors">Categories</a></li>
               <li><a href="/#about" className="hover:text-emerald-400 transition-colors">About Us</a></li>
               <li><a href="/#contact" className="hover:text-emerald-400 transition-colors">Contact</a></li>
@@ -36,9 +39,9 @@ const Footer = () => {
             <h4 className="text-white font-medium mb-6">Plant Categories</h4>
             <ul className="space-y-3 text-sm text-emerald-200/80">
               {categories.slice(0, 5).map((cat, i) => (
-                <li key={i}><a href={`/plants`} className="hover:text-emerald-400 transition-colors">{cat}</a></li>
+                <li key={i}><Link to="/plants" className="hover:text-emerald-400 transition-colors">{cat}</Link></li>
               ))}
-              {categories.length > 5 && <li><a href="/plants" className="text-emerald-400 hover:text-emerald-300">View All...</a></li>}
+              {categories.length > 5 && <li><Link to="/plants" className="text-emerald-400 hover:text-emerald-300">View All...</Link></li>}
             </ul>
           </div>
 
@@ -50,16 +53,14 @@ const Footer = () => {
               
             </ul>
             <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-emerald-500/20 flex items-center justify-center transition-colors text-white">
+              <a href="https://www.instagram.com/dev.nursery.57" target="_blank" className="w-10 h-10 rounded-full bg-white/5 hover:bg-emerald-500/20 flex items-center justify-center transition-colors text-white">
                 <FaInstagram className="w-5 h-5" />
                 
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-emerald-500/20 flex items-center justify-center transition-colors text-white">
+              <a href="https://www.facebook.com/share/1EeJ28aypk/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 hover:bg-emerald-500/20 flex items-center justify-center transition-colors text-white" aria-label="Facebook">
                 <FaFacebook className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-emerald-500/20 flex items-center justify-center transition-colors text-white">
-                <FaTwitter className="w-5 h-5" />
-              </a>
+              
             </div>
           </div>
         </div>

@@ -99,14 +99,79 @@ export const getPlantsByCategory = (param1, param2) => {
     return plantList;
   }
 
-  const normalizedCategory = String(category).trim().toLowerCase();
+  const clean = (s) => String(s || '').trim().toLowerCase().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ');
+  const target = clean(category);
 
   return plantList.filter(plant => {
     if (!plant) return false;
-    const catMatch = plant.category && String(plant.category).trim().toLowerCase() === normalizedCategory;
-    const subMatch = plant.subcategory && String(plant.subcategory).trim().toLowerCase() === normalizedCategory;
-    return Boolean(catMatch || subMatch);
+    const cat = clean(plant.category);
+    const sub = clean(plant.subcategory);
+    const tags = Array.isArray(plant.tags) ? plant.tags.map(clean) : [];
+
+    // Exact or space/hyphen-normalized match
+    if (cat === target || sub === target || tags.includes(target)) {
+      return true;
+    }
+    // Keyword/stem match (e.g., 'indoor' matches 'indoor plants')
+    if (target === 'indoor' && cat.includes('indoor')) return true;
+    if (target === 'outdoor' && cat.includes('outdoor')) return true;
+    if (target === 'flowering' && (cat.includes('flowering') || cat.includes('flower'))) return true;
+    if (target === 'fruit' && (cat.includes('fruit') || cat.includes('fruits'))) return true;
+
+    return false;
   });
+};
+
+/**
+ * Normalizes season string safely for comparison.
+ * Normalizes 'summer' -> 'summer', 'winter' -> 'winter', 'monsoon' -> 'monsoon',
+ * and 'all-season', 'all season', 'allseason', 'all', 'evergreen', 'year-round' -> 'all-season'.
+ */
+export const normalizeSeasonKey = (seasonStr) => {
+  if (!seasonStr) return '';
+  const cleaned = String(seasonStr).trim().toLowerCase().replace(/[-_\s]+/g, '');
+  if (cleaned === 'allseason' || cleaned === 'all' || cleaned === 'evergreen' || cleaned === 'yearround') {
+    return 'all-season';
+  }
+  if (cleaned === 'summer') return 'summer';
+  if (cleaned === 'winter') return 'winter';
+  if (cleaned === 'monsoon' || cleaned === 'rainy' || cleaned === 'rain') return 'monsoon';
+  return cleaned;
+};
+
+/**
+ * Checks whether a plant is suitable for a specified season.
+ * Supports:
+ * - primary plant.season
+ * - plant.seasons array
+ * - plant.tags array
+ */
+export const isPlantInSeason = (plant, season) => {
+  if (!plant || !season) return false;
+
+  const target = normalizeSeasonKey(season);
+  if (!target) return true;
+
+  // 1. Check primary plant.season
+  if (plant.season && normalizeSeasonKey(plant.season) === target) {
+    return true;
+  }
+
+  // 2. Check plant.seasons array if present
+  if (Array.isArray(plant.seasons)) {
+    if (plant.seasons.some(s => normalizeSeasonKey(s) === target)) {
+      return true;
+    }
+  }
+
+  // 3. Check plant.tags if present
+  if (Array.isArray(plant.tags)) {
+    if (plant.tags.some(t => normalizeSeasonKey(t) === target)) {
+      return true;
+    }
+  }
+
+  return false;
 };
 
 /**
@@ -127,14 +192,16 @@ export const getPlantsBySeason = (param1, param2) => {
     season = param1;
   }
 
-  if (!season || String(season).trim().toLowerCase() === 'all') {
+  if (!season) {
     return plantList;
   }
 
-  const normalizedSeason = String(season).trim().toLowerCase();
-  return plantList.filter(plant => {
-    return plant && plant.season && String(plant.season).trim().toLowerCase() === normalizedSeason;
-  });
+  const raw = String(season).trim().toLowerCase();
+  if (raw === 'all plants' || raw === 'allplants') {
+    return plantList;
+  }
+
+  return plantList.filter(plant => isPlantInSeason(plant, season));
 };
 
 /**

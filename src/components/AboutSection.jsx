@@ -13,8 +13,8 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-stone-50 relative overflow-hidden">
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-emerald-100/50 blur-3xl pointer-events-none"></div>
+    <section id="about" className="py-16 md:py-24 bg-stone-50 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-48 sm:w-64 h-48 sm:h-64 rounded-full bg-emerald-100/50 blur-3xl pointer-events-none"></div>
       
       <div className="container mx-auto px-4 md:px-6">
         <motion.div 
@@ -26,7 +26,11 @@ const AboutSection = () => {
         >
           <div className="text-center mb-16">
             <motion.div variants={itemVariants} className="flex justify-center mb-4">
-              <Leaf className="w-10 h-10 text-emerald-600" />
+              <img 
+                src="/images/logo.png" 
+                alt="Dev Greenland Logo" 
+                className="h-16 w-auto object-contain"
+              />
             </motion.div>
             <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-serif text-stone-900 mb-8">
               About Dev Greenland Nursery

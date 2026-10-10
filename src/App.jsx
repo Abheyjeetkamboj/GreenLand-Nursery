@@ -6,13 +6,25 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Plants from './pages/Plants';
 import PlantDetail from './pages/PlantDetail';
+import Accessories from './pages/Accessories';
+import AccessoryDetail from './pages/AccessoryDetail';
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 50);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
   return null;
 };
@@ -39,8 +51,13 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/plants" element={<Plants />} />
+              <Route path="/collection/:season" element={<Plants />} />
+              <Route path="/collections/:season" element={<Plants />} />
               <Route path="/plant/:id" element={<PlantDetail />} />
               <Route path="/plants/:id" element={<PlantDetail />} />
+              <Route path="/accessories" element={<Accessories />} />
+              <Route path="/accessory/:id" element={<AccessoryDetail />} />
+              <Route path="/accessories/:id" element={<AccessoryDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>

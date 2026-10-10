@@ -179,13 +179,23 @@ const PlantDetail = () => {
             )}
 
             <div className="mt-auto">
-              <a 
-                href="/#contact"
-                className="inline-block w-full text-center px-8 py-4 bg-[#1A3622] text-[#FAFAF7] font-medium rounded-xl hover:bg-[#254A2F] transition-colors shadow-md hover:shadow-lg"
-              >
-                Inquire About This Plant
-              </a>
-              <p className="text-center text-sm text-gray-500 mt-3">Visit our nursery to purchase</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a 
+                  href={`https://wa.me/919914900057?text=${encodeURIComponent(`Hi Dev Greenland Nursery, I would like to inquire about ${plant.name} (${plant.id}). Is it currently available?`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center px-6 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                >
+                  Inquire on WhatsApp
+                </a>
+                <a 
+                  href="/#contact"
+                  className="px-6 py-3.5 bg-stone-100 hover:bg-stone-200 text-[#1A3622] font-medium rounded-xl transition-colors text-center"
+                >
+                  Visit Nursery
+                </a>
+              </div>
+              <p className="text-center text-xs text-gray-500 mt-3">Available for pickup & delivery from Dev Greenland Nursery, Jalalabad</p>
             </div>
           </motion.div>
         </div>

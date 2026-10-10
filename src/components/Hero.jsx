@@ -33,7 +33,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-stone-50 pt-20">
+    <section id="home" className="relative min-h-[90dvh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-stone-50 pt-24 pb-12 md:py-0">
       
       {!shouldReduceMotion && (
         <>
@@ -67,14 +67,14 @@ const Hero = () => {
         >
           <motion.h1 
             variants={itemVariants}
-            className="text-5xl md:text-7xl font-serif font-medium tracking-tight mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-7xl font-serif font-medium tracking-tight mb-4 sm:mb-6 leading-tight"
           >
             Bring Nature <span className="text-emerald-300">Home</span>
           </motion.h1>
           
           <motion.p 
             variants={itemVariants}
-            className="text-lg md:text-xl text-emerald-100/80 mb-10 leading-relaxed font-light max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-emerald-100/80 mb-8 sm:mb-10 leading-relaxed font-light max-w-2xl mx-auto"
           >
             Discover our curated collection of indoor, outdoor, fruit, and flowering plants. 
             Nurtured with care at Dev Greenland Nursery to thrive in your space.

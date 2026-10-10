@@ -16,48 +16,58 @@
   background-color: var(--color-cream);
 }
 
-/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .font-serif {
   font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
-/* Hide Scrollbar Globally (Chrome, Safari, Edge, Opera, Firefox) */
-html,
-body {
-  scrollbar-width: none; /* Firefox */
+/* Hide scrollbar for clean horizontal product rails on mobile */
+.scrollbar-none,
+.scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
+.scrollbar-none::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  display: none;
-  width: 0px;
-  height: 0px;
-  background: transparent;
+  width: 8px;
 }
 
-/* Hide Scrollbar Utilities */
-.scrollbar-hide,
-.no-scrollbar {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
 }
 
-.scrollbar-hide::-webkit-scrollbar,
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-  width: 0px;
-  height: 0px;
-  background: transparent;
+::-webkit-scrollbar-thumb {
+  background: var(--color-earth-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-earth);
 }
 
 /* Selection */

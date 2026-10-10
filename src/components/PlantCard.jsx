@@ -29,30 +29,36 @@ const PlantCard = ({ plant }) => {
           )}
           
           {plant.category && (
-            <div className="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-emerald-800 shadow-sm">
+            <div 
+              className="absolute top-3 left-3 px-2.5 sm:px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[11px] sm:text-xs font-medium text-emerald-800 shadow-sm max-w-[48%] truncate pointer-events-none"
+              title={plant.category}
+            >
               {plant.category}
             </div>
           )}
           
           {plant.season && (
-            <div className="absolute top-3 right-3 px-3 py-1 bg-emerald-900/90 backdrop-blur-sm rounded-full text-xs font-medium text-white shadow-sm">
+            <div 
+              className="absolute top-3 right-3 px-2.5 sm:px-3 py-1 bg-emerald-900/90 backdrop-blur-sm rounded-full text-[11px] sm:text-xs font-medium text-white shadow-sm max-w-[48%] truncate pointer-events-none"
+              title={plant.season}
+            >
               {plant.season}
             </div>
           )}
         </div>
 
-        <div className="p-5 flex flex-col flex-grow">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-lg font-medium text-stone-900 group-hover:text-emerald-700 transition-colors line-clamp-1">
+        <div className="p-4 sm:p-5 flex flex-col flex-grow">
+          <div className="flex justify-between items-start mb-1 sm:mb-2">
+            <h3 className="text-base sm:text-lg font-medium text-stone-900 group-hover:text-emerald-700 transition-colors line-clamp-1">
               {plant.name}
             </h3>
           </div>
           
-          <p className="text-sm text-stone-500 line-clamp-2 mb-4 flex-grow">
+          <p className="text-xs sm:text-sm text-stone-500 line-clamp-2 mb-3 sm:mb-4 flex-grow">
             {plant.shortDescription}
           </p>
 
-          <div className="flex items-center justify-between mt-auto pt-4 border-t border-stone-50">
+          <div className="flex items-center justify-between mt-auto pt-3 sm:pt-4 border-t border-stone-100">
             <div className="flex items-center gap-3 text-stone-400">
               {plant.careLevel && (
                 <span className="text-xs font-medium flex items-center gap-1" title={`Care: ${plant.careLevel}`}>
@@ -61,9 +67,9 @@ const PlantCard = ({ plant }) => {
                 </span>
               )}
             </div>
-            <span className="flex items-center text-sm font-medium text-emerald-600">
+            <span className="flex items-center text-xs sm:text-sm font-medium text-emerald-600">
               View Details 
-              <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 transition-transform group-hover:translate-x-1" />
             </span>
           </div>
         </div>
