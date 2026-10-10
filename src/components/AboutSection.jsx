@@ -57,7 +57,7 @@ const AboutSection = () => {
           </div>
           
           <motion.div variants={itemVariants} className="mt-16 bg-stone-200 rounded-3xl h-64 md:h-96 flex items-center justify-center border border-stone-300 border-dashed">
-            <p className="text-stone-500 font-medium">[ Placeholder for Real Business Photo / Nursery View ]</p>
+            <p className="text-stone-500 font-medium">Ithe nursery di main photo ave gi</p>
           </motion.div>
         </motion.div>
       </div>

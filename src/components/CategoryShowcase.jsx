@@ -36,9 +36,7 @@ const ShowcaseSection = ({ category, index }) => {
                 View all {category.name} 
                 <span className="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
               </Link>
-              <span className="text-xs text-stone-400 md:hidden flex items-center gap-1 font-medium">
-                Swipe &rarr;
-              </span>
+              
             </div>
           </div>
 

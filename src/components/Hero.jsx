@@ -33,7 +33,10 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-[90dvh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-stone-50 pt-24 pb-12 md:py-0">
+    <section 
+      id="home" 
+      className="relative w-full min-h-screen min-h-[100svh] min-h-[100dvh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-stone-50 pt-20 sm:pt-24 pb-8 sm:pb-12 md:py-0"
+    >
       
       {!shouldReduceMotion && (
         <>
